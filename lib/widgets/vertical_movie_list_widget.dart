@@ -22,6 +22,9 @@ class VerticalMovieListWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ListView.separated(
+          padding: const EdgeInsets.only(bottom: 16),
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return MovieTileWidget(
               title: DummyData.backdropListsTitle[index],
