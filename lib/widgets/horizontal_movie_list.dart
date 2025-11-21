@@ -24,6 +24,7 @@ class HorizontalMovieListWidget extends StatelessWidget {
           SizedBox(
             height: 180,
             child: ListView.separated(
+              scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return RoundedImageWidget(
                   path:
