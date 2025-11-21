@@ -9,3 +9,29 @@ class ColorPallete {
   static const grey = Color(0xFF564D4D);
   static const darkGrey = Color(0xFF393434);
 }
+
+class DummyData {
+  static const movieListPath = [
+    "500dos.jpg",
+    "alice.jpg",
+    "architecture_101.jpg",
+    "beautiful_bouqet.jpg",
+    "frieren.jpg",
+    "onepiece.jpg",
+    "yataome.jpg",
+  ];
+
+  static const backdropListsPath = [
+    "3a.jpg",
+    "onepiece.jpg",
+    "conan.jpg",
+    "conan2.jpg",
+  ];
+
+  static const backdropListsTitle = [
+    "San nen A gumi",
+    "One Piece Film RED",
+    "Detectove Conan Movie",
+    "cDetectove Conan Movie",
+  ];
+}
