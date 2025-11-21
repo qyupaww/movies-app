@@ -20,9 +20,14 @@ class CtaButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        fixedSize: Size(MediaQuery.of(context).size.width, 48),
+        fixedSize: Size(
+          MediaQuery.of(context).size.width,
+          48,
+        ),
         backgroundColor: backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
