@@ -22,7 +22,15 @@ class MoviesSharedPreferences {
     await _initSharedPreferences();
     if (_sharedPreferences != null) {
       final moviesJson = _sharedPreferences!.getString(myMoviesListKey);
+
+      if (moviesJson != null) {
+        List<MovieGeneral> movieLists = _convertJsonToMovieLists(moviesJson);
+        return movieLists;
+      } else {
+        return [];
+      }
     }
+    return [];
   }
 
   List<MovieGeneral> _convertJsonToMovieLists(String movieJson) {
