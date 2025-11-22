@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'movie_general.g.dart';
 
-@JsonSerializable(fieldRename: .snake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MovieGeneral {
   final int id;
   final String title;

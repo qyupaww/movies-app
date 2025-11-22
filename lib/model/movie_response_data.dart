@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'movie_general.dart';
 part 'movie_response_data.g.dart';
 
-@JsonSerializable(fieldRename: .snake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MovieResponseData {
   final int page;
   final List<MovieGeneral> results;

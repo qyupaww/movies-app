@@ -11,7 +11,10 @@ class HeroMovieWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        margin: .symmetric(horizontal: 8, vertical: 10),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 10,
+        ),
         height: 550,
         decoration: BoxDecoration(
           image: const DecorationImage(
@@ -27,13 +30,14 @@ class HeroMovieWidget extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: .symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 16,
               ),
               child: Column(
-                mainAxisAlignment: .end,
-                crossAxisAlignment: .center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment:
+                    CrossAxisAlignment.center,
                 children: [
                   Row(
                     children: [
