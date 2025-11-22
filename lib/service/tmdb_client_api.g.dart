@@ -13,7 +13,7 @@ class _TmdbClientApi implements TmdbClientApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://api.themoviedb.org/3';
+    baseUrl ??= 'https://api.themoviedb.org/3/';
   }
 
   final Dio _dio;
