@@ -27,8 +27,7 @@ class HorizontalMovieListWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return RoundedImageWidget(
-                  path:
-                      "assets/images/${listsPath[index]}}",
+                  path: "assets/images/${listsPath[index]}",
                 );
               },
               separatorBuilder: (_, __) {

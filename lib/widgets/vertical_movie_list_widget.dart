@@ -29,7 +29,7 @@ class VerticalMovieListWidget extends StatelessWidget {
             return MovieTileWidget(
               title: DummyData.backdropListsTitle[index],
               assetPath:
-                  "assets/images/${DummyData.backdropListsPath[index]}",
+                  "assets/images/backdrop/${DummyData.backdropListsPath[index]}",
             );
           },
           separatorBuilder: (_, __) {

@@ -23,11 +23,7 @@ class HomeScreen extends StatelessWidget {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.cast,
-              color: ColorPallete.white,
-              size: 24,
-            ),
+            child: Icon(Icons.cast, color: ColorPallete.white, size: 24),
           ),
         ],
       ),
@@ -37,22 +33,22 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 12),
           HorizontalMovieListWidget(
             title: "Trending Now",
-            listsPath: DummyData.backdropListsPath,
+            listsPath: DummyData.movieListsPath,
           ),
           SizedBox(height: 12),
           HorizontalMovieListWidget(
             title: "Trending of the Week",
-            listsPath: DummyData.backdropListsPath,
+            listsPath: DummyData.movieListsPath,
           ),
           SizedBox(height: 12),
           HorizontalMovieListWidget(
             title: "Highest Rating",
-            listsPath: DummyData.backdropListsPath,
+            listsPath: DummyData.movieListsPath,
           ),
           SizedBox(height: 12),
           HorizontalMovieListWidget(
             title: "Favorites",
-            listsPath: DummyData.backdropListsPath,
+            listsPath: DummyData.movieListsPath,
           ),
           SizedBox(height: 12),
         ],

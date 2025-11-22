@@ -11,7 +11,7 @@ class ColorPallete {
 }
 
 class DummyData {
-  static const movieListPath = [
+  static const movieListsPath = [
     "500dos.jpg",
     "alice.jpg",
     "architecture_101.jpg",
@@ -25,13 +25,13 @@ class DummyData {
     "3a.jpg",
     "onepiece.jpg",
     "conan.jpg",
-    "conan2.jpg",
+    "conan2.png",
   ];
 
   static const backdropListsTitle = [
     "San nen A gumi",
     "One Piece Film RED",
-    "Detectove Conan Movie",
-    "cDetectove Conan Movie",
+    "Detective Conan Movie",
+    "Detective Conan Movie",
   ];
 }
