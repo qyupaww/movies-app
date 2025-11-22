@@ -41,7 +41,7 @@ class MoviesSharedPreferences {
 
       if (moviesJson != null) {
         List<MovieGeneral> movies = _convertJsonToMovieLists(moviesJson);
-        final movieIndex = movies.indexWhere((f) => f.id == movie.id);
+        final movieIndex = movies.indexWhere((m) => m.id == movie.id);
         if (movieIndex >= 0) {
           return;
         } else {
@@ -64,7 +64,7 @@ class MoviesSharedPreferences {
 
       if (moviesJson != null) {
         List<MovieGeneral> movies = _convertJsonToMovieLists(moviesJson);
-        final movieIndex = movies.indexWhere((f) => f.id == id);
+        final movieIndex = movies.indexWhere((m) => m.id == id);
         if (movieIndex == -1) {
           return;
         } else {
