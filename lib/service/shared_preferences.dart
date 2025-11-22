@@ -47,6 +47,11 @@ class MoviesSharedPreferences {
         } else {
           movies.add(movie);
         }
+
+        _sharedPreferences!.setString(myMoviesListKey, jsonEncode(movies));
+      } else {
+        List<MovieGeneral> movies = [movie];
+        _sharedPreferences!.setString(myMoviesListKey, jsonEncode(movies));
       }
     }
   }
