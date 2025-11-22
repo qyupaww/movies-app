@@ -33,6 +33,24 @@ class MoviesSharedPreferences {
     return [];
   }
 
+  Future<void> addMovies(MovieGeneral movie) async {
+    await _initSharedPreferences();
+
+    if (_sharedPreferences != null) {
+      final moviesJson = _sharedPreferences!.getString(myMoviesListKey);
+
+      if (moviesJson != null) {
+        List<MovieGeneral> movies = _convertJsonToMovieLists(moviesJson);
+        final movieIndex = movies.indexWhere((f) => f.id == movie.id);
+        if (movieIndex >= 0) {
+          return;
+        } else {
+          movies.add(movie);
+        }
+      }
+    }
+  }
+
   List<MovieGeneral> _convertJsonToMovieLists(String movieJson) {
     return (json.decode(movieJson) as List<dynamic>)
         .map((movieJson) =>
