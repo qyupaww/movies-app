@@ -56,6 +56,25 @@ class MoviesSharedPreferences {
     }
   }
 
+  Future<void> deleteMovieById(int id) async {
+    await _initSharedPreferences();
+
+    if (_sharedPreferences != null) {
+      final moviesJson = _sharedPreferences!.getString(myMoviesListKey);
+
+      if (moviesJson != null) {
+        List<MovieGeneral> movies = _convertJsonToMovieLists(moviesJson);
+        final movieIndex = movies.indexWhere((f) => f.id == id);
+        if (movieIndex == -1) {
+          return;
+        } else {
+          movies.removeAt(movieIndex);
+          _sharedPreferences!.setString(myMoviesListKey, jsonEncode(movies));
+        }
+      }
+    }
+  }
+
   List<MovieGeneral> _convertJsonToMovieLists(String movieJson) {
     return (json.decode(movieJson) as List<dynamic>)
         .map((movieJson) =>
