@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/movie_general.dart';
@@ -19,7 +21,14 @@ class MoviesSharedPreferences {
   Future<List<MovieGeneral>> getAllMovies() async {
     await _initSharedPreferences();
     if (_sharedPreferences != null) {
-      final moviesJson = _sharedPreferences!.getString(myMoviesListKey)
+      final moviesJson = _sharedPreferences!.getString(myMoviesListKey);
     }
+  }
+
+  List<MovieGeneral> _convertJsonToMovieLists(String movieJson) {
+    return (json.decode(movieJson) as List<dynamic>)
+        .map((movieJson) =>
+            MovieGeneral.fromJson(movieJson as Map<String, dynamic>))
+        .toList();
   }
 }
