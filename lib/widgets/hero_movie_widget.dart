@@ -11,29 +11,39 @@ class HeroMovieWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 10,
+        ),
         height: 550,
         decoration: BoxDecoration(
           image: const DecorationImage(
             image: AssetImage("assets/images/frieren.jpg"),
             fit: BoxFit.cover,
           ),
-          border: Border.all(width: 0.1, color: ColorPallete.white),
+          border: Border.all(
+            width: 0.1,
+            color: ColorPallete.white,
+          ),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 16,
+              ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: .end,
+                crossAxisAlignment: .center,
                 children: [
                   Row(
                     children: [
                       Expanded(
                         child: CtaButtonWidget(
-                          backgroundColor: ColorPallete.white,
+                          backgroundColor:
+                              ColorPallete.white,
                           onPressed: () {},
                           text: const Text(
                             "Play",
@@ -53,7 +63,8 @@ class HeroMovieWidget extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: CtaButtonWidget(
-                          backgroundColor: ColorPallete.mineShaft,
+                          backgroundColor:
+                              ColorPallete.mineShaft,
                           onPressed: () {},
                           text: const Text(
                             "My List",
