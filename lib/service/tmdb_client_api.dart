@@ -6,7 +6,7 @@ import '../model/movie_response_data.dart';
 
 part 'tmdb_client_api.g.dart';
 
-@RestApi(baseUrl: 'http://api.themoviedb.org/3')
+@RestApi(baseUrl: 'https://api.themoviedb.org/3')
 abstract class TmdbClientApi {
   factory TmdbClientApi(Dio dio, {String baseUrl}) = _TmdbClientApi;
 
