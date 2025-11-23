@@ -20,6 +20,8 @@ class SearchScreen extends StatelessWidget {
             const SearchBarWidget(),
             const SizedBox(height: 12),
             BlocBuilder<SearchBloc, SearchState>(
+              bloc: BlocProvider.of<SearchBloc>(context)
+                ..add(SearchInitEvent()),
               buildWhen: (_, current) =>
                   current.status == SearchStatus.loaded ||
                   current.status == SearchStatus.loadedSearchResult,
