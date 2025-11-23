@@ -1,3 +1,4 @@
+import '../constants.dart';
 import 'movie_general.dart';
 
 class MovieSection {

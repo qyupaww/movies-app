@@ -10,6 +10,15 @@ class ColorPallete {
   static const darkGrey = Color(0xFF393434);
 }
 
+enum HomeSectionType {
+  trendingDay,
+  trendingWeek,
+  comedy,
+  drama,
+  history,
+  horror,
+}
+
 class DummyData {
   static const movieListsPath = [
     "500dos.jpg",
