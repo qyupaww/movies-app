@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/bloc/list_bloc/list_bloc.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/widgets/vertical_movie_list_widget.dart';
 
@@ -31,11 +33,19 @@ class MyListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const SingleChildScrollView(
-        child: VerticalMovieListWidget(
-          title: "Favorites",
-          movies: [],
-        ),
+      body: SingleChildScrollView(
+        child: BlocBuilder<MyListBloc, MyListState>(
+            buildWhen: (_, current) => current.status == MyListStatus.loaded,
+            builder: (context, state) {
+              if (state.status == MyListStatus.loaded) {
+                return VerticalMovieListWidget(
+                  title: "Favorites",
+                  movies: state.movies,
+                );
+              } else {
+                return const SizedBox();
+              }
+            }),
       ),
     );
   }
