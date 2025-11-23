@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/constants.dart';
 import 'package:movies_app/model/movie_general.dart';
 import 'package:movies_app/widgets/rounded_image_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
