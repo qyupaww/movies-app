@@ -30,7 +30,7 @@ class VerticalMovieListWidget extends StatelessWidget {
             return MovieTileWidget(
               title: movies[index].title,
               assetPath:
-                  "https://image.tmdb.org/t/p/w500${movies[index].posterPath}",
+                  "https://image.tmdb.org/t/p/w500${movies[index].backdropPath}",
             );
           },
           separatorBuilder: (_, __) {

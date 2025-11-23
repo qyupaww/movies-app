@@ -33,15 +33,16 @@ class MovieTileWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14,
-              color: ColorPallete.white,
-              fontWeight: FontWeight.w500,
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 14,
+                color: ColorPallete.white,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-          const Spacer(),
           const Icon(
             Icons.play_arrow,
             color: ColorPallete.white,
