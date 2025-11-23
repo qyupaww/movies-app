@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/widgets/cta_button_widget.dart';
-
+import 'package:movies_app/model/movie_general.dart';
+import 'cta_button_widget.dart';
 import '../constants.dart';
 
 class HeroMovieWidget extends StatelessWidget {
-  const HeroMovieWidget({super.key});
+  final MovieGeneral movie;
+  const HeroMovieWidget({required this.movie, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,9 @@ class HeroMovieWidget extends StatelessWidget {
         ),
         height: 550,
         decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage("assets/images/frieren.jpg"),
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://image.tmdb.org/t/p/w500/${movie.posterPath}"),
             fit: BoxFit.cover,
           ),
           border: Border.all(
@@ -36,15 +38,20 @@ class HeroMovieWidget extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment:
-                    CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Text(
+                    movie.title,
+                    style: const TextStyle(
+                        color: ColorPallete.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold),
+                  ),
                   Row(
                     children: [
                       Expanded(
                         child: CtaButtonWidget(
-                          backgroundColor:
-                              ColorPallete.white,
+                          backgroundColor: ColorPallete.white,
                           onPressed: () {},
                           text: const Text(
                             "Play",
@@ -64,8 +71,7 @@ class HeroMovieWidget extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: CtaButtonWidget(
-                          backgroundColor:
-                              ColorPallete.mineShaft,
+                          backgroundColor: ColorPallete.mineShaft,
                           onPressed: () {},
                           text: const Text(
                             "My List",
