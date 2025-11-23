@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/widgets/hero_movie_widget.dart';
 import 'package:movies_app/widgets/horizontal_movie_list.dart';
+
+import '../bloc/home_bloc/home_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,31 +30,44 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: const [
-          HeroMovieWidget(),
-          SizedBox(height: 12),
-          HorizontalMovieListWidget(
-            title: "Trending Now",
-            listsPath: DummyData.movieListsPath,
-          ),
-          SizedBox(height: 12),
-          HorizontalMovieListWidget(
-            title: "Trending of the Week",
-            listsPath: DummyData.movieListsPath,
-          ),
-          SizedBox(height: 12),
-          HorizontalMovieListWidget(
-            title: "Highest Rating",
-            listsPath: DummyData.movieListsPath,
-          ),
-          SizedBox(height: 12),
-          HorizontalMovieListWidget(
-            title: "Favorites",
-            listsPath: DummyData.movieListsPath,
-          ),
-          SizedBox(height: 12),
-        ],
+      body: BlocBuilder<HomeBloc, HomeState>(
+        buildWhen: (_, current) => current.status == HomeStatus.loaded,
+        builder: (context, state) {
+          if (state.status == HomeStatus.loaded) {
+            return ListView(
+              children: [
+                if (state.movie != null) HeroMovieWidget(movie: state.movie!),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[0],
+                ),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[1],
+                ),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[2],
+                ),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[3],
+                ),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[4],
+                ),
+                const SizedBox(height: 12),
+                HorizontalMovieListWidget(
+                  movieSection: state.sections[5],
+                ),
+                const SizedBox(height: 12),
+              ],
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }
