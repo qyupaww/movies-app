@@ -87,7 +87,7 @@ class _TmdbClientApi implements TmdbClientApi {
     required int page,
     required String sortBy,
     required int withGenres,
-    required int language,
+    required String language,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -125,7 +125,7 @@ class _TmdbClientApi implements TmdbClientApi {
   Future<MovieResponseData> getMoviesByQuery({
     required String query,
     required bool includeAdult,
-    required int language,
+    required String language,
     required int page,
   }) async {
     const _extra = <String, dynamic>{};
@@ -188,7 +188,7 @@ class _TmdbClientApi implements TmdbClientApi {
   @override
   Future<MovieDetails> getSimilarMovieDetailsById({
     required int movieId,
-    required int language,
+    required String language,
     required int page,
   }) async {
     const _extra = <String, dynamic>{};

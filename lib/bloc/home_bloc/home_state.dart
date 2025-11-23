@@ -8,23 +8,23 @@ enum HomeStatus {
 class HomeState {
   final HomeStatus status;
   final MovieGeneral? movie;
-  final List<MovieSection> section;
+  final List<MovieSection> sections;
 
   const HomeState({
     this.status = HomeStatus.initial,
     this.movie,
-    this.section = const <MovieSection>[],
+    this.sections = const <MovieSection>[],
   });
 
   HomeState copywith({
     HomeStatus? status,
     MovieGeneral? movie,
-    List<MovieSection>? section,
+    List<MovieSection>? sections,
   }) {
     return HomeState(
       status: status ?? this.status,
       movie: movie ?? this.movie,
-      section: section ?? this.section,
+      sections: sections ?? this.sections,
     );
   }
 }

@@ -28,14 +28,14 @@ abstract class TmdbClientApi {
     @Query('page') required int page,
     @Query('sort_by') required String sortBy,
     @Query('with_genres') required int withGenres,
-    @Query('language') required int language,
+    @Query('language') required String language,
   });
 
   @GET('/search.movie')
   Future<MovieResponseData> getMoviesByQuery({
     @Query('query') required String query,
     @Query('include_adult') required bool includeAdult,
-    @Query('language') required int language,
+    @Query('language') required String language,
     @Query('page') required int page,
   });
 
@@ -47,7 +47,7 @@ abstract class TmdbClientApi {
   @GET('movie/{id}/similar')
   Future<MovieDetails> getSimilarMovieDetailsById({
     @Path('id') required int movieId,
-    @Query('language') required int language,
+    @Query('language') required String language,
     @Query('page') required int page,
   });
 }
