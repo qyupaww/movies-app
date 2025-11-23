@@ -32,7 +32,10 @@ class MyListScreen extends StatelessWidget {
         ],
       ),
       body: const SingleChildScrollView(
-        child: VerticalMovieListWidget(title: "Favorites"),
+        child: VerticalMovieListWidget(
+          title: "Favorites",
+          movies: [],
+        ),
       ),
     );
   }
