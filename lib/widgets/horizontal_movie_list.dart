@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/widgets/rounded_image_widget.dart';
-import 'package:movies_app/widgets/title_list_widget.dart';
+import 'rounded_image_widget.dart';
+import 'title_list_widget.dart';
+import '../model/movie_section.dart';
 
 class HorizontalMovieListWidget extends StatelessWidget {
-  final String title;
-  final List<String> listsPath;
+  final MovieSection movieSection;
   const HorizontalMovieListWidget({
-    required this.title,
-    required this.listsPath,
+    required this.movieSection,
     super.key,
   });
 
@@ -19,7 +18,7 @@ class HorizontalMovieListWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TitleListWidget(title: title),
+          TitleListWidget(title: movieSection.title),
           const SizedBox(height: 8),
           SizedBox(
             height: 180,
@@ -27,13 +26,14 @@ class HorizontalMovieListWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return RoundedImageWidget(
-                  path: "assets/images/${listsPath[index]}",
+                  path:
+                      "https://image.tmdb.org/t/p/w500/${movieSection.movies[index].posterPath}",
                 );
               },
               separatorBuilder: (_, __) {
                 return const SizedBox(width: 8);
               },
-              itemCount: listsPath.length,
+              itemCount: movieSection.movies.length,
             ),
           ),
         ],
