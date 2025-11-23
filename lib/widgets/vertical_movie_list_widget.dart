@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/model/movie_general.dart';
 import 'package:movies_app/widgets/movie_tile_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
 
@@ -6,7 +7,9 @@ import '../constants.dart';
 
 class VerticalMovieListWidget extends StatelessWidget {
   final String title;
+  final List<MovieGeneral> movies;
   const VerticalMovieListWidget({
+    required this.movies,
     required this.title,
     super.key,
   });
@@ -27,15 +30,15 @@ class VerticalMovieListWidget extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return MovieTileWidget(
-              title: DummyData.backdropListsTitle[index],
+              title: movies[index].title,
               assetPath:
-                  "assets/images/backdrop/${DummyData.backdropListsPath[index]}",
+                  "https://image.tmdb.org/t/p/w500${movies[index].posterPath}",
             );
           },
           separatorBuilder: (_, __) {
             return const SizedBox(height: 8);
           },
-          itemCount: DummyData.backdropListsPath.length,
+          itemCount: movies.length,
         ),
       ],
     );
