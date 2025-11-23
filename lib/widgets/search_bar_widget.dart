@@ -1,16 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/constants.dart';
+
+import '../bloc/search_bloc/search_bloc.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
 
   @override
-  State<SearchBarWidget> createState() =>
-      _SearchBarWidgetState();
+  State<SearchBarWidget> createState() => _SearchBarWidgetState();
 }
 
 class _SearchBarWidgetState extends State<SearchBarWidget> {
-  String? query;
+  Timer? searchOnStoppedTyping;
+
+  void _onChangeHandler(BuildContext context, String value) {
+    const duration = Duration(milliseconds: 800);
+
+    if (searchOnStoppedTyping != null) {
+      setState(() {
+        searchOnStoppedTyping!.cancel();
+      });
+    }
+
+    setState(() {
+      searchOnStoppedTyping = Timer(duration, () {
+        BlocProvider.of<SearchBloc>(context).add(SearchQueryEvent(value));
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,9 +63,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.top,
               onChanged: (value) {
-                setState(() {
-                  query = value;
-                });
+                _onChangeHandler(context, value);
               },
               decoration: const InputDecoration(
                 hintText: "Search movies...",
