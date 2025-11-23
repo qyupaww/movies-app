@@ -10,7 +10,7 @@ class RoundedImageWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: SizedBox(
         width: 120,
-        child: Image.asset(path, fit: BoxFit.cover),
+        child: Image.network(path, fit: BoxFit.cover),
       ),
     );
   }
