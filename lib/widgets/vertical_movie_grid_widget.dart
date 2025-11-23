@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/constants.dart';
+import 'package:movies_app/model/movie_general.dart';
 import 'package:movies_app/widgets/rounded_image_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
 
 class VerticalMovieGridWidget extends StatelessWidget {
   final String title;
-  const VerticalMovieGridWidget({required this.title, super.key});
+  final List<MovieGeneral> movies;
+
+  const VerticalMovieGridWidget({
+    required this.movies,
+    required this.title,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +33,21 @@ class VerticalMovieGridWidget extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return RoundedImageWidget(
-              path: "assets/images/${DummyData.movieListsPath[index]}",
+              path:
+                  "https://image.tmdb.org/t/p/w500${movies[index].posterPath}",
             );
           },
-          itemCount: DummyData.movieListsPath.length,
+          itemCount: _getItemCount(movies.length),
         ),
       ],
     );
+  }
+
+  int _getItemCount(int length) {
+    if (length > 15) {
+      return 15;
+    } else {
+      return length;
+    }
   }
 }
