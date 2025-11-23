@@ -3,8 +3,6 @@ import 'package:movies_app/model/movie_general.dart';
 import 'package:movies_app/widgets/movie_tile_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
 
-import '../constants.dart';
-
 class VerticalMovieListWidget extends StatelessWidget {
   final String title;
   final List<MovieGeneral> movies;
