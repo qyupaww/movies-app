@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/bloc/list_bloc/list_bloc.dart';
 import 'package:movies_app/constants.dart';
+import 'package:movies_app/service/shared_preferences.dart';
 import 'package:movies_app/service/token_interceptor.dart';
 import '../bloc/home_bloc/home_bloc.dart';
+import '../bloc/search_bloc/search_bloc.dart';
 import '../service/tmdb_client_api.dart';
 import 'home_screen.dart';
 
@@ -19,6 +22,7 @@ class MainNavigatorScreen extends StatefulWidget {
 
 class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
   late TmdbClientApi _tmdbClientApi;
+  late MoviesSharedPreferences _sharedPreferences;
   int _selectedIndex = 0;
 
   @override
@@ -27,6 +31,7 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
     _tmdbClientApi = TmdbClientApi(
       Dio()..interceptors.add(TokenInterceptor()),
     );
+    _sharedPreferences = MoviesSharedPreferences();
   }
 
   final List<Widget> _buildScreen = [
@@ -48,8 +53,8 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
         BlocProvider(
             create: (context) =>
                 HomeBloc(_tmdbClientApi)..add(HomeInitEvent())),
-        BlocProvider(
-            create: (context) => HomeBloc(_tmdbClientApi)..add(HomeInitEvent()))
+        BlocProvider(create: (context) => SearchBloc(_tmdbClientApi)),
+        BlocProvider(create: (context) => MyListBloc(_sharedPreferences)),
       ],
       child: Scaffold(
         backgroundColor: ColorPallete.black,
