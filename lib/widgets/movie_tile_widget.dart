@@ -20,9 +20,15 @@ class MovieTileWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: SizedBox(
               width: 140,
-              child: Image.asset(
+              child: Image.network(
                 assetPath,
                 fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) {
+                  return Image.asset(
+                    "assets/images/placeholder.jpg",
+                    fit: BoxFit.cover,
+                  );
+                },
               ),
             ),
           ),
