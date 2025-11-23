@@ -18,7 +18,16 @@ class MainNavigatorScreen extends StatefulWidget {
 }
 
 class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
+  late TmdbClientApi _tmdbClientApi;
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tmdbClientApi = TmdbClientApi(
+      Dio()..interceptors.add(TokenInterceptor()),
+    );
+  }
 
   final List<Widget> _buildScreen = [
     const HomeScreen(),
@@ -37,12 +46,10 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomeBloc(
-            TmdbClientApi(
-              Dio()..interceptors.add(TokenInterceptor()),
-            ),
-          )..add(HomeInitEvent()),
-        )
+            create: (context) =>
+                HomeBloc(_tmdbClientApi)..add(HomeInitEvent())),
+        BlocProvider(
+            create: (context) => HomeBloc(_tmdbClientApi)..add(HomeInitEvent()))
       ],
       child: Scaffold(
         backgroundColor: ColorPallete.black,
