@@ -10,7 +10,16 @@ class RoundedImageWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: SizedBox(
         width: 120,
-        child: Image.network(path, fit: BoxFit.cover),
+        child: Image.network(
+          path,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) {
+            return Image.asset(
+              "assets/images/placeholder.jpg",
+              fit: BoxFit.cover,
+            );
+          },
+        ),
       ),
     );
   }
