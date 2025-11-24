@@ -19,28 +19,7 @@ enum HomeSectionType {
   horror,
 }
 
-class DummyData {
-  static const movieListsPath = [
-    "500dos.jpg",
-    "alice.jpg",
-    "architecture_101.jpg",
-    "beautiful_bouqet.jpg",
-    "frieren.jpg",
-    "onepiece.jpg",
-    "yataome.jpg",
-  ];
-
-  static const backdropListsPath = [
-    "3a.jpg",
-    "onepiece.jpg",
-    "conan.jpg",
-    "conan2.png",
-  ];
-
-  static const backdropListsTitle = [
-    "San nen A gumi",
-    "One Piece Film RED",
-    "Detective Conan Movie",
-    "Detective Conan Movie",
-  ];
+class ArgumentKey {
+  static const idKey = "id_key";
+  static const movieGenerealKey = "movie_general_key";
 }
