@@ -6,10 +6,12 @@ import 'package:movies_app/widgets/title_list_widget.dart';
 class VerticalMovieGridWidget extends StatelessWidget {
   final String title;
   final List<MovieGeneral> movies;
+  final bool isMovieDetail;
 
   const VerticalMovieGridWidget({
     required this.movies,
     required this.title,
+    this.isMovieDetail = false,
     super.key,
   });
 
@@ -18,7 +20,12 @@ class VerticalMovieGridWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TitleListWidget(padding: const EdgeInsets.only(left: 24), title: title),
+        TitleListWidget(
+          padding: EdgeInsets.only(
+            left: isMovieDetail ? 8.0 : 24.0,
+          ),
+          title: title,
+        ),
         const SizedBox(height: 8),
         GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 8),

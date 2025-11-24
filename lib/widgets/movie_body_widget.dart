@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/widgets/cta_button_widget.dart';
+import 'package:movies_app/widgets/icon_label_widget.dart';
+import 'package:movies_app/widgets/vertical_movie_grid_widget.dart';
 
+import '../model/genre.dart';
 import '../model/movie_details.dart';
 import '../model/movie_general.dart';
 
@@ -100,8 +103,68 @@ class MovieBodyWidget extends StatelessWidget {
               size: 36,
             ),
           ),
+          const SizedBox(height: 14.0),
+          Text(
+            movieDetails.overview,
+            style: const TextStyle(
+                color: ColorPallete.white,
+                fontSize: 13,
+                fontWeight: FontWeight.normal),
+          ),
+          const SizedBox(height: 14.0),
+          Text(
+            "Genres: ${_getGenreLists(movieDetails.genres)}",
+            style: const TextStyle(
+              color: ColorPallete.white,
+              fontSize: 13,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Row(
+            children: [
+              IconLabelWidget(
+                icon: isFavorite ? Icons.check : Icons.add,
+                label: "My List",
+                onTap: () {},
+              ),
+              IconLabelWidget(
+                icon: Icons.thumb_up,
+                label: "Rate",
+                onTap: () {},
+              ),
+              IconLabelWidget(
+                icon: Icons.send,
+                label: "Share",
+                onTap: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: 16.0),
+          VerticalMovieGridWidget(
+            movies: similarMovies,
+            title: "More Like This",
+            isMovieDetail: true,
+          ),
         ],
       ),
     );
+  }
+
+  int _getYear(String? dateString) {
+    if (dateString != null) {
+      DateTime dateTime = DateTime.parse(dateString);
+      int year = dateTime.year;
+      return year;
+    }
+    return 1970;
+  }
+
+  String _getGenreLists(List<Genre>? genres) {
+    if (genres != null && genres.isNotEmpty) {
+      List<String> genreNames = genres.map((e) => e.name).toList();
+      return genreNames.join(", ");
+    }
+    return "No Information";
   }
 }
