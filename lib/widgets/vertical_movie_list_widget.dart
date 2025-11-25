@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/model/movie_general.dart';
 import 'package:movies_app/widgets/movie_tile_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
+
+import '../bloc/movie_detail_bloc/movie_detail_bloc.dart';
+import '../constants.dart';
+import '../views/movie_detail_screen.dart';
 
 class VerticalMovieListWidget extends StatelessWidget {
   final String title;
