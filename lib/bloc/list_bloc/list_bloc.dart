@@ -21,9 +21,15 @@ class MyListBloc extends Bloc<MyListEvent, MyListState> {
   ) async {
     final movies = await _sharedPreferences.getAllMovies();
 
-    emit(MyListState(
-      status: MyListStatus.loaded,
-      movies: movies,
-    ));
+    if (movies.isNotEmpty) {
+      emit(MyListState(
+        status: MyListStatus.loaded,
+        movies: movies,
+      ));
+    } else {
+      emit(const MyListState(
+        status: MyListStatus.empty,
+      ));
+    }
   }
 }

@@ -3,6 +3,7 @@ part of "list_bloc.dart";
 enum MyListStatus {
   initial,
   loaded,
+  empty,
 }
 
 class MyListState {
