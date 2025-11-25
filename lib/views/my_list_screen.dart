@@ -36,6 +36,7 @@ class MyListScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<MyListBloc, MyListState>(
+            bloc: BlocProvider.of<MyListBloc>(context)..add(MyListInitEvent()),
             buildWhen: (_, current) => current.status == MyListStatus.loaded,
             builder: (context, state) {
               if (state.status == MyListStatus.loaded) {
