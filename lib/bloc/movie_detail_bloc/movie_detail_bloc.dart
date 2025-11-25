@@ -24,6 +24,8 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
     MovieDetailInitEvent event,
     Emitter<MovieDetailState> emit,
   ) async {
+    emit(MovieDetailState(status: MovieDetailStatus.loading));
+
     final MovieDetails movieDetails =
         await _tmdbClientApi.getMovieDetailsById(movieId: event.movieId);
     final result = await _tmdbClientApi.getSimilarMovieDetailsById(

@@ -22,6 +22,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeInitEvent event,
     Emitter<HomeState> emit,
   ) async {
+    emit(HomeState(status: HomeStatus.loading));
+
     List<MovieResponseData> results = await Future.wait([
       _tmdbClientApi.getTrendingMovieBy("day"),
       _tmdbClientApi.getTrendingMovieBy("week"),

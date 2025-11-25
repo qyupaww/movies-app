@@ -2,6 +2,7 @@ part of 'movie_detail_bloc.dart';
 
 enum MovieDetailStatus {
   initial,
+  loading,
   loaded,
 }
 
