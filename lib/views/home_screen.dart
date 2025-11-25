@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/widgets/hero_movie_widget.dart';
 import 'package:movies_app/widgets/horizontal_movie_list.dart';
+import 'package:movies_app/widgets/loading_widget.dart';
 
 import '../bloc/home_bloc/home_bloc.dart';
 
@@ -64,6 +65,8 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 12),
               ],
             );
+          } else if (state.status == HomeStatus.loading) {
+            return const LoadingWidget();
           } else {
             return const SizedBox();
           }
