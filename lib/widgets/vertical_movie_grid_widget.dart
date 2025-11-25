@@ -40,7 +40,7 @@ class VerticalMovieGridWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             return RoundedImageWidget(
               path:
-                  "https://image.tmdb.org/t/p/w500${movies[index].posterPath}",
+                  "https://image.tmdb.org/t/p/w500/${movies[index].posterPath}",
             );
           },
           itemCount: _getItemCount(movies.length),

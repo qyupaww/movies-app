@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/widgets/cta_button_widget.dart';
 import 'package:movies_app/widgets/icon_label_widget.dart';
 import 'package:movies_app/widgets/vertical_movie_grid_widget.dart';
 
+import '../bloc/movie_detail_bloc/movie_detail_bloc.dart';
 import '../model/genre.dart';
 import '../model/movie_details.dart';
 import '../model/movie_general.dart';
@@ -12,16 +14,22 @@ class MovieBodyWidget extends StatelessWidget {
   final MovieDetails movieDetails;
   final List<MovieGeneral> similarMovies;
   final bool isFavorite;
-  const MovieBodyWidget(
-      {required this.movieDetails,
-      required this.similarMovies,
-      required this.isFavorite,
-      super.key});
+  final MovieGeneral? currentMovie;
+
+  const MovieBodyWidget({
+    required this.movieDetails,
+    required this.similarMovies,
+    required this.isFavorite,
+    this.currentMovie,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,10 +39,9 @@ class MovieBodyWidget extends StatelessWidget {
             movieDetails.title,
             textAlign: TextAlign.start,
             style: const TextStyle(
-              color: ColorPallete.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+                color: ColorPallete.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8.0),
           Row(
@@ -43,7 +50,7 @@ class MovieBodyWidget extends StatelessWidget {
                 "${_getYear(movieDetails.releaseDate)}",
                 style: const TextStyle(
                   color: ColorPallete.white,
-                  fontSize: 16,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.normal,
                 ),
               ),
@@ -52,7 +59,7 @@ class MovieBodyWidget extends StatelessWidget {
                 "-",
                 style: TextStyle(
                   color: ColorPallete.white,
-                  fontSize: 14,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.normal,
                 ),
               ),
@@ -61,10 +68,10 @@ class MovieBodyWidget extends StatelessWidget {
                 "${movieDetails.runtime} Minutes",
                 style: const TextStyle(
                   color: ColorPallete.white,
-                  fontSize: 16,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.normal,
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 12.0),
@@ -75,14 +82,14 @@ class MovieBodyWidget extends StatelessWidget {
               "Play",
               style: TextStyle(
                 color: ColorPallete.mineShaft,
-                fontSize: 16,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             icon: const Icon(
               Icons.play_arrow,
               color: ColorPallete.mineShaft,
-              size: 36,
+              size: 36.0,
             ),
           ),
           const SizedBox(height: 12.0),
@@ -90,35 +97,35 @@ class MovieBodyWidget extends StatelessWidget {
             backgroundColor: ColorPallete.mineShaft,
             onPressed: () {},
             text: const Text(
-              "Download",
+              "Dowbload",
               style: TextStyle(
                 color: ColorPallete.white,
-                fontSize: 16,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             icon: const Icon(
-              Icons.download,
+              Icons.play_arrow,
               color: ColorPallete.white,
-              size: 36,
+              size: 36.0,
             ),
           ),
           const SizedBox(height: 14.0),
           Text(
             movieDetails.overview,
             style: const TextStyle(
-                color: ColorPallete.white,
-                fontSize: 13,
-                fontWeight: FontWeight.normal),
+              color: ColorPallete.white,
+              fontSize: 13.0,
+              fontWeight: FontWeight.normal,
+            ),
           ),
           const SizedBox(height: 14.0),
           Text(
             "Genres: ${_getGenreLists(movieDetails.genres)}",
             style: const TextStyle(
-              color: ColorPallete.white,
-              fontSize: 13,
-              fontWeight: FontWeight.normal,
-            ),
+                color: ColorPallete.grey,
+                fontSize: 13.0,
+                fontWeight: FontWeight.normal),
           ),
           const SizedBox(height: 16.0),
           Row(
@@ -126,7 +133,12 @@ class MovieBodyWidget extends StatelessWidget {
               IconLabelWidget(
                 icon: isFavorite ? Icons.check : Icons.add,
                 label: "My List",
-                onTap: () {},
+                onTap: () {
+                  if (currentMovie != null) {
+                    BlocProvider.of<MovieDetailBloc>(context)
+                        .add(MovieDetailAddFavoriteEvent(currentMovie!));
+                  }
+                },
               ),
               IconLabelWidget(
                 icon: Icons.thumb_up,
@@ -142,10 +154,10 @@ class MovieBodyWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           VerticalMovieGridWidget(
-            movies: similarMovies,
             title: "More Like This",
+            movies: similarMovies,
             isMovieDetail: true,
-          ),
+          )
         ],
       ),
     );
@@ -157,6 +169,7 @@ class MovieBodyWidget extends StatelessWidget {
       int year = dateTime.year;
       return year;
     }
+
     return 1970;
   }
 
