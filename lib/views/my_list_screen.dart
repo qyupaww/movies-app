@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/bloc/list_bloc/list_bloc.dart';
 import 'package:movies_app/constants.dart';
+import 'package:movies_app/widgets/empty_widget.dart';
 import 'package:movies_app/widgets/vertical_movie_list_widget.dart';
 
 class MyListScreen extends StatelessWidget {
@@ -42,6 +43,8 @@ class MyListScreen extends StatelessWidget {
                   title: "Favorites",
                   movies: state.movies,
                 );
+              } else if (state.status == MyListStatus.empty) {
+                return const EmptyWidget();
               } else {
                 return const SizedBox();
               }
