@@ -45,7 +45,7 @@ abstract class TmdbClientApi {
   });
 
   @GET('movie/{id}/similar')
-  Future<MovieDetails> getSimilarMovieDetailsById({
+  Future<MovieResponseData> getSimilarMovieDetailsById({
     @Path('id') required int movieId,
     @Query('language') required String language,
     @Query('page') required int page,

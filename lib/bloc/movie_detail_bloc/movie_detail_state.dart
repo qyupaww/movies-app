@@ -13,7 +13,14 @@ class MovieDetailState {
 
   const MovieDetailState({
     this.status = MovieDetailStatus.initial,
-    this.movieDetails = const MovieDetails(),
+    this.movieDetails = const MovieDetails(
+      id: 0,
+      originalLanguage: "",
+      originalTitle: "",
+      overview: "",
+      title: "",
+      runtime: 0,
+    ),
     this.similarMovies = const <MovieGeneral>[],
     this.isFavorite = false,
   });

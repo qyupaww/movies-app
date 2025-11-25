@@ -186,7 +186,7 @@ class _TmdbClientApi implements TmdbClientApi {
   }
 
   @override
-  Future<MovieDetails> getSimilarMovieDetailsById({
+  Future<MovieResponseData> getSimilarMovieDetailsById({
     required int movieId,
     required String language,
     required int page,
@@ -199,7 +199,7 @@ class _TmdbClientApi implements TmdbClientApi {
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<MovieDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<MovieResponseData>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -215,7 +215,7 @@ class _TmdbClientApi implements TmdbClientApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = MovieDetails.fromJson(_result.data!);
+    final value = MovieResponseData.fromJson(_result.data!);
     return value;
   }
 
