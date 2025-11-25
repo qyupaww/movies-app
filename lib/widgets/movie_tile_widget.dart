@@ -14,43 +14,46 @@ class MovieTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: SizedBox(
-              width: 140,
-              child: Image.network(
-                assetPath,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) {
-                  return Image.asset(
-                    "assets/images/placeholder.jpg",
-                    fit: BoxFit.cover,
-                  );
-                },
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: SizedBox(
+                width: 140,
+                child: Image.network(
+                  assetPath,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) {
+                    return Image.asset(
+                      "assets/images/placeholder.jpg",
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 14,
-                color: ColorPallete.white,
-                fontWeight: FontWeight.w500,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: ColorPallete.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          const Icon(
-            Icons.play_arrow,
-            color: ColorPallete.white,
-            size: 40,
-          ),
-        ],
+            const Icon(
+              Icons.play_arrow,
+              color: ColorPallete.white,
+              size: 40,
+            ),
+          ],
+        ),
       ),
     );
   }
