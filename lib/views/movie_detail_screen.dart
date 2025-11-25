@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/bloc/movie_detail_bloc/movie_detail_bloc.dart';
+import 'package:movies_app/widgets/loading_widget.dart';
 
 import '../constants.dart';
 import '../widgets/movie_image_widget.dart';
@@ -32,6 +33,8 @@ class MovieDetailScreen extends StatelessWidget {
                 ),
               ],
             );
+          } else if (state.status == MovieDetailStatus.loading) {
+            return const LoadingWidget();
           } else {
             return const SizedBox();
           }
