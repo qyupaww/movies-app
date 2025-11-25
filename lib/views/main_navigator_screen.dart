@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/bloc/list_bloc/list_bloc.dart';
+import 'package:movies_app/bloc/movie_detail_bloc/movie_detail_bloc.dart';
 import 'package:movies_app/constants.dart';
 import 'package:movies_app/service/shared_preferences.dart';
 import 'package:movies_app/service/token_interceptor.dart';
@@ -55,6 +56,11 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
                 HomeBloc(_tmdbClientApi)..add(HomeInitEvent())),
         BlocProvider(create: (context) => SearchBloc(_tmdbClientApi)),
         BlocProvider(create: (context) => MyListBloc(_sharedPreferences)),
+        BlocProvider(
+            create: (context) => MovieDetailBloc(
+                  _tmdbClientApi,
+                  _sharedPreferences,
+                )),
       ],
       child: Scaffold(
         backgroundColor: ColorPallete.black,
