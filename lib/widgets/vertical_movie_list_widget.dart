@@ -28,6 +28,19 @@ class VerticalMovieListWidget extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return MovieTileWidget(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return BlocProvider.value(
+                    value: BlocProvider.of<MovieDetailBloc>(context),
+                    child: MovieDetailScreen(
+                      arguments: {
+                        ArgumentKey.idKey: movies[index].id,
+                        ArgumentKey.movieGenerealKey: movies[index],
+                      },
+                    ),
+                  );
+                }));
+              },
               title: movies[index].title,
               assetPath:
                   "https://image.tmdb.org/t/p/w500/${movies[index].backdropPath}",

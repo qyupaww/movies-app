@@ -4,9 +4,11 @@ import 'package:movies_app/constants.dart';
 class MovieTileWidget extends StatelessWidget {
   final String title;
   final String assetPath;
+  final void Function() onTap;
   const MovieTileWidget({
     required this.title,
     required this.assetPath,
+    required this.onTap,
     super.key,
   });
 
