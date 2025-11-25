@@ -97,7 +97,7 @@ class MovieBodyWidget extends StatelessWidget {
             backgroundColor: ColorPallete.mineShaft,
             onPressed: () {},
             text: const Text(
-              "Dowbload",
+              "Download",
               style: TextStyle(
                 color: ColorPallete.white,
                 fontSize: 16.0,
