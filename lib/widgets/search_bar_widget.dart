@@ -90,4 +90,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    searchOnStoppedTyping?.cancel();
+    super.dispose();
+  }
 }

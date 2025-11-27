@@ -31,7 +31,7 @@ abstract class TmdbClientApi {
     @Query('language') required String language,
   });
 
-  @GET('/search.movie')
+  @GET('/search/movie')
   Future<MovieResponseData> getMoviesByQuery({
     @Query('query') required String query,
     @Query('include_adult') required bool includeAdult,

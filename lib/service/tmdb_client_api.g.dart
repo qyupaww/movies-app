@@ -145,7 +145,7 @@ class _TmdbClientApi implements TmdbClientApi {
     )
             .compose(
               _dio.options,
-              '/search.movie',
+              '/search/movie',
               queryParameters: queryParameters,
               data: _data,
             )
