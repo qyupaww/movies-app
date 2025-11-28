@@ -144,14 +144,14 @@ class MovieBodyWidget extends StatelessWidget {
               ),
               Expanded(
                 child: IconLabelWidget(
-                  icon: Icons.thumb_up,
+                  icon: Icons.star_rate,
                   label: "Rate",
                   onTap: () {},
                 ),
               ),
               Expanded(
                 child: IconLabelWidget(
-                  icon: Icons.send,
+                  icon: Icons.share,
                   label: "Share",
                   onTap: () {},
                 ),
