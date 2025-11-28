@@ -7,7 +7,7 @@ import 'package:movies_app/widgets/title_list_widget.dart';
 import '../constants.dart';
 import '../views/movie_detail_screen.dart';
 
-class VerticalMovieGridWidget extends StatelessWidget {
+class VerticalMovieGridWidget extends StatefulWidget {
   final String title;
   final List<MovieGeneral> movies;
   final bool isMovieDetail;
@@ -18,6 +18,21 @@ class VerticalMovieGridWidget extends StatelessWidget {
     this.isMovieDetail = false,
     super.key,
   });
+
+  @override
+  State<VerticalMovieGridWidget> createState() =>
+      _VerticalMovieGridWidgetState();
+}
+
+class _VerticalMovieGridWidgetState extends State<VerticalMovieGridWidget> {
+  int _visibleCount = 0;
+  final int _step = 9;
+
+  @override
+  void initState() {
+    super.initState();
+    _visibleCount = widget.movies.length < _step ? widget.movies.length : _step;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +49,8 @@ class VerticalMovieGridWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleListWidget(
-          padding: EdgeInsets.only(left: isMovieDetail ? 8.0 : 24.0),
-          title: title,
+          padding: EdgeInsets.only(left: widget.isMovieDetail ? 8.0 : 24.0),
+          title: widget.title,
         ),
         const SizedBox(height: 8),
         GridView.builder(
@@ -56,8 +71,8 @@ class VerticalMovieGridWidget extends StatelessWidget {
                     value: BlocProvider.of<MovieDetailBloc>(context),
                     child: MovieDetailScreen(
                       arguments: {
-                        ArgumentKey.idKey: movies[index].id,
-                        ArgumentKey.movieGenerealKey: movies[index],
+                        ArgumentKey.idKey: widget.movies[index].id,
+                        ArgumentKey.movieGenerealKey: widget.movies[index],
                       },
                     ),
                   );
@@ -69,7 +84,7 @@ class VerticalMovieGridWidget extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Image.network(
-                        "https://image.tmdb.org/t/p/w500/${movies[index].posterPath}",
+                        "https://image.tmdb.org/t/p/w500/${widget.movies[index].posterPath}",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -92,7 +107,7 @@ class VerticalMovieGridWidget extends StatelessWidget {
                       right: 8,
                       bottom: 8,
                       child: Text(
-                        movies[index].title,
+                        widget.movies[index].title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -108,17 +123,31 @@ class VerticalMovieGridWidget extends StatelessWidget {
               ),
             );
           },
-          itemCount: _getItemCount(movies.length),
+          itemCount: _visibleCount,
         ),
+        if (_visibleCount < widget.movies.length) ...[
+          const SizedBox(height: 8),
+          Center(
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  _visibleCount = (_visibleCount + _step) > widget.movies.length
+                      ? widget.movies.length
+                      : _visibleCount + _step;
+                });
+              },
+              child: const Text(
+                "Load More",
+                style: TextStyle(
+                  color: ColorPallete.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
       ],
     );
-  }
-
-  int _getItemCount(int length) {
-    if (length > 15) {
-      return 15;
-    } else {
-      return length;
-    }
   }
 }
