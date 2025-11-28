@@ -89,7 +89,7 @@ class MovieBodyWidget extends StatelessWidget {
             icon: const Icon(
               Icons.play_arrow,
               color: ColorPallete.mineShaft,
-              size: 36.0,
+              size: 24.0,
             ),
           ),
           const SizedBox(height: 12.0),
@@ -105,9 +105,9 @@ class MovieBodyWidget extends StatelessWidget {
               ),
             ),
             icon: const Icon(
-              Icons.play_arrow,
+              Icons.download,
               color: ColorPallete.white,
-              size: 36.0,
+              size: 24.0,
             ),
           ),
           const SizedBox(height: 14.0),
@@ -130,25 +130,31 @@ class MovieBodyWidget extends StatelessWidget {
           const SizedBox(height: 16.0),
           Row(
             children: [
-              IconLabelWidget(
-                icon: isFavorite ? Icons.check : Icons.add,
-                label: "My List",
-                onTap: () {
-                  if (currentMovie != null) {
-                    BlocProvider.of<MovieDetailBloc>(context)
-                        .add(MovieDetailAddFavoriteEvent(currentMovie!));
-                  }
-                },
+              Expanded(
+                child: IconLabelWidget(
+                  icon: isFavorite ? Icons.check : Icons.add,
+                  label: "My List",
+                  onTap: () {
+                    if (currentMovie != null) {
+                      BlocProvider.of<MovieDetailBloc>(context)
+                          .add(MovieDetailAddFavoriteEvent(currentMovie!));
+                    }
+                  },
+                ),
               ),
-              IconLabelWidget(
-                icon: Icons.thumb_up,
-                label: "Rate",
-                onTap: () {},
+              Expanded(
+                child: IconLabelWidget(
+                  icon: Icons.thumb_up,
+                  label: "Rate",
+                  onTap: () {},
+                ),
               ),
-              IconLabelWidget(
-                icon: Icons.send,
-                label: "Share",
-                onTap: () {},
+              Expanded(
+                child: IconLabelWidget(
+                  icon: Icons.send,
+                  label: "Share",
+                  onTap: () {},
+                ),
               ),
             ],
           ),

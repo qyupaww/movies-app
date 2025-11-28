@@ -9,44 +9,126 @@ class HeroMovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imagePath = movie.backdropPath ?? movie.posterPath;
+    final imageUrl =
+        imagePath != null ? "https://image.tmdb.org/t/p/w780/$imagePath" : null;
+    final year = movie.releaseDate != null && movie.releaseDate!.isNotEmpty
+        ? movie.releaseDate!.substring(0, 4)
+        : null;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        margin: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 10,
-        ),
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         height: 550,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://image.tmdb.org/t/p/w500/${movie.posterPath}"),
-            fit: BoxFit.cover,
-          ),
-          border: Border.all(
-            width: 0.1,
-            color: ColorPallete.white,
-          ),
+          border: Border.all(width: 0.1, color: ColorPallete.white),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
+            Positioned.fill(
+              child: imageUrl != null
+                  ? Image.network(imageUrl, fit: BoxFit.cover)
+                  : Container(color: Colors.grey.shade800),
+            ),
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      ColorPallete.black.withOpacity(0.75),
+                    ],
+                  ),
+                ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     movie.title,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
-                        color: ColorPallete.white,
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold),
+                      color: ColorPallete.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                            blurRadius: 8,
+                            color: Colors.black54,
+                            offset: Offset(0, 2)),
+                      ],
+                    ),
                   ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (year != null)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.12),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            year,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.12),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.star,
+                                color: Colors.amber, size: 14),
+                            const SizedBox(width: 4),
+                            Text(
+                              movie.voteAverage.toStringAsFixed(1),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.12),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          movie.originalLanguage.toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
                       Expanded(

@@ -16,18 +16,27 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: ColorPallete.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          "Movies App",
-          style: TextStyle(
-            color: ColorPallete.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        elevation: 0,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 8.0),
+          child: Text(
+            "Netflig KW",
+            style: TextStyle(
+              color: ColorPallete.white,
+              fontSize: 28,
+              fontWeight: FontWeight.w900,
+              letterSpacing: -1.2,
+            ),
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(Icons.cast, color: ColorPallete.white, size: 24),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: ColorPallete.white, size: 28),
+            onPressed: () {},
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(Icons.cast, color: ColorPallete.white, size: 28),
           ),
         ],
       ),

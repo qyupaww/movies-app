@@ -22,13 +22,20 @@ class VerticalMovieGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final crossAxisCount = width >= 1000
+        ? 6
+        : width >= 800
+            ? 5
+            : width >= 600
+                ? 4
+                : 3;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleListWidget(
-          padding: EdgeInsets.only(
-            left: isMovieDetail ? 8.0 : 24.0,
-          ),
+          padding: EdgeInsets.only(left: isMovieDetail ? 8.0 : 24.0),
           title: title,
         ),
         const SizedBox(height: 8),
@@ -36,14 +43,14 @@ class VerticalMovieGridWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 6,
-            childAspectRatio: 82 / 96,
-            crossAxisSpacing: 6,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            childAspectRatio: 2 / 3,
           ),
           itemBuilder: (context, index) {
-            return RoundedImageWidget(
+            return GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
                   return BlocProvider.value(
@@ -57,8 +64,49 @@ class VerticalMovieGridWidget extends StatelessWidget {
                   );
                 }));
               },
-              path:
-                  "https://image.tmdb.org/t/p/w500/${movies[index].posterPath}",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.network(
+                        "https://image.tmdb.org/t/p/w500/${movies[index].posterPath}",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.65),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 8,
+                      right: 8,
+                      bottom: 8,
+                      child: Text(
+                        movies[index].title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
           itemCount: _getItemCount(movies.length),
