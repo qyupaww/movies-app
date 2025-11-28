@@ -35,6 +35,16 @@ class _VerticalMovieGridWidgetState extends State<VerticalMovieGridWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant VerticalMovieGridWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.movies != widget.movies) {
+      _visibleCount =
+          widget.movies.length < _step ? widget.movies.length : _step;
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final crossAxisCount = width >= 1000
