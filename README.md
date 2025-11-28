@@ -64,7 +64,7 @@ Lihat `pubspec.yaml` untuk versi lengkap (`pubspec.yaml:9–28`).
    ```
 2. Generate file `*.g.dart` (model dan Retrofit):
    ```bash
-   dart run build_runner build --delete-conflicting-outputs
+   dart run build_runner build
    ```
 3. Jalankan aplikasi:
 
