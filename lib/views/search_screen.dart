@@ -7,8 +7,19 @@ import 'package:movies_app/widgets/vertical_movie_list_widget.dart';
 
 import '../widgets/vertical_movie_grid_widget.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<SearchBloc>(context).add(SearchInitEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +31,6 @@ class SearchScreen extends StatelessWidget {
             const SearchBarWidget(),
             const SizedBox(height: 12),
             BlocBuilder<SearchBloc, SearchState>(
-              bloc: BlocProvider.of<SearchBloc>(context)
-                ..add(SearchInitEvent()),
               buildWhen: (_, current) =>
                   current.status == SearchStatus.loaded ||
                   current.status == SearchStatus.loadedSearchResult,
