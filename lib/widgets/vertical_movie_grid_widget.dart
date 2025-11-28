@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/bloc/movie_detail_bloc/movie_detail_bloc.dart';
 import 'package:movies_app/model/movie_general.dart';
-import 'package:movies_app/widgets/rounded_image_widget.dart';
 import 'package:movies_app/widgets/title_list_widget.dart';
 
 import '../constants.dart';
@@ -82,7 +81,7 @@ class VerticalMovieGridWidget extends StatelessWidget {
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              Colors.black.withOpacity(0.65),
+                              Colors.black.withValues(alpha: 0.65),
                             ],
                           ),
                         ),
