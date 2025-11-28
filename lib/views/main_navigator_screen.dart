@@ -8,11 +8,13 @@ import 'package:movies_app/service/shared_preferences.dart';
 import 'package:movies_app/service/token_interceptor.dart';
 import '../bloc/home_bloc/home_bloc.dart';
 import '../bloc/search_bloc/search_bloc.dart';
+import '../bloc/auth_bloc/auth_bloc.dart';
 import '../service/tmdb_client_api.dart';
 import 'home_screen.dart';
 
 import 'my_list_screen.dart';
 import 'search_screen.dart';
+import 'profile_screen.dart';
 
 class MainNavigatorScreen extends StatefulWidget {
   const MainNavigatorScreen({super.key});
@@ -39,6 +41,7 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const MyListScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -56,6 +59,7 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
                 HomeBloc(_tmdbClientApi)..add(HomeInitEvent())),
         BlocProvider(create: (context) => SearchBloc(_tmdbClientApi)),
         BlocProvider(create: (context) => MyListBloc(_sharedPreferences)),
+        BlocProvider(create: (context) => AuthBloc(_sharedPreferences)),
         BlocProvider(
             create: (context) => MovieDetailBloc(
                   _tmdbClientApi,
@@ -99,6 +103,17 @@ class _MainNavigatorScreenState extends State<MainNavigatorScreen> {
               label: "My List",
               activeIcon: Icon(
                 Icons.playlist_play,
+                color: ColorPallete.white,
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                color: ColorPallete.grey,
+              ),
+              label: "Profile",
+              activeIcon: Icon(
+                Icons.person,
                 color: ColorPallete.white,
               ),
             ),

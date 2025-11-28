@@ -6,6 +6,7 @@ import '../model/movie_general.dart';
 
 class MoviesSharedPreferences {
   static const myMoviesListKey = "my_movies_list_key";
+  static const userKey = "user_key";
 
   MoviesSharedPreferences() {
     _initSharedPreferences();
@@ -31,6 +32,34 @@ class MoviesSharedPreferences {
       }
     }
     return [];
+  }
+
+  Future<Map<String, String>?> getUser() async {
+    await _initSharedPreferences();
+    if (_sharedPreferences != null) {
+      final userJson = _sharedPreferences!.getString(userKey);
+      if (userJson != null) {
+        final map = json.decode(userJson) as Map<String, dynamic>;
+        return map.map((key, value) => MapEntry(key, value.toString()));
+      }
+    }
+    return null;
+  }
+
+  Future<void> setUser({required String email, String? name}) async {
+    await _initSharedPreferences();
+    if (_sharedPreferences != null) {
+      final data = {
+        'email': email,
+        if (name != null) 'name': name,
+      };
+      _sharedPreferences!.setString(userKey, jsonEncode(data));
+    }
+  }
+
+  Future<void> clearUser() async {
+    await _initSharedPreferences();
+    _sharedPreferences?.remove(userKey);
   }
 
   Future<void> addMovies(MovieGeneral movie) async {
