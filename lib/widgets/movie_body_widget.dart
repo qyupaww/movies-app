@@ -107,7 +107,7 @@ class MovieBodyWidget extends StatelessWidget {
             icon: const Icon(
               Icons.download,
               color: ColorPallete.white,
-              size: 24.0,
+              size: 22.0,
             ),
           ),
           const SizedBox(height: 14.0),
