@@ -96,6 +96,17 @@ class _VerticalMovieGridWidgetState extends State<VerticalMovieGridWidget> {
                       child: Image.network(
                         "https://image.tmdb.org/t/p/w500/${widget.movies[index].posterPath}",
                         fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) {
+                          return Container(
+                            color: Colors.grey.shade800,
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.broken_image,
+                              color: Colors.white54,
+                              size: 22,
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Positioned.fill(

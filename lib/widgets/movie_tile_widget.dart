@@ -28,9 +28,14 @@ class MovieTileWidget extends StatelessWidget {
                   assetPath,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) {
-                    return Image.asset(
-                      "assets/images/placeholder.jpg",
-                      fit: BoxFit.cover,
+                    return Container(
+                      color: Colors.grey.shade800,
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.broken_image,
+                        color: Colors.white54,
+                        size: 24,
+                      ),
                     );
                   },
                 ),

@@ -29,7 +29,21 @@ class HeroMovieWidget extends StatelessWidget {
           children: [
             Positioned.fill(
               child: imageUrl != null
-                  ? Image.network(imageUrl, fit: BoxFit.cover)
+                  ? Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) {
+                        return Container(
+                          color: Colors.grey.shade800,
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.broken_image,
+                            color: Colors.white54,
+                            size: 28,
+                          ),
+                        );
+                      },
+                    )
                   : Container(color: Colors.grey.shade800),
             ),
             Positioned.fill(
