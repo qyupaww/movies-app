@@ -1,4 +1,4 @@
-# Movies App
+# Movix
 
 Flutter aplikasi katalog film yang terintegrasi dengan TMDB API, menggunakan arsitektur State Management BLoC, Retrofit, Dio, dan JSON Serializable. Proyek ini menampilkan hero highlight, daftar horizontal per kategori, pencarian film, detail film, serta fitur favorit yang tersimpan lokal.
 

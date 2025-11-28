@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         title: const Padding(
           padding: EdgeInsets.only(left: 8.0),
           child: Text(
-            "Netflig KW",
+            "Movix",
             style: TextStyle(
               color: ColorPallete.white,
               fontSize: 28,
