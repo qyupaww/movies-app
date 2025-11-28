@@ -75,40 +75,48 @@ class MovieBodyWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12.0),
-          CtaButtonWidget(
-            backgroundColor: ColorPallete.white,
-            onPressed: () {},
-            text: const Text(
-              "Play",
-              style: TextStyle(
-                color: ColorPallete.mineShaft,
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
+          Row(
+            children: [
+              Expanded(
+                child: CtaButtonWidget(
+                  backgroundColor: ColorPallete.white,
+                  onPressed: () {},
+                  text: const Text(
+                    "Play",
+                    style: TextStyle(
+                      color: ColorPallete.mineShaft,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  icon: const Icon(
+                    Icons.play_arrow,
+                    color: ColorPallete.mineShaft,
+                    size: 24.0,
+                  ),
+                ),
               ),
-            ),
-            icon: const Icon(
-              Icons.play_arrow,
-              color: ColorPallete.mineShaft,
-              size: 24.0,
-            ),
-          ),
-          const SizedBox(height: 12.0),
-          CtaButtonWidget(
-            backgroundColor: ColorPallete.mineShaft,
-            onPressed: () {},
-            text: const Text(
-              "Download",
-              style: TextStyle(
-                color: ColorPallete.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
+              const SizedBox(width: 12.0),
+              Expanded(
+                child: CtaButtonWidget(
+                  backgroundColor: ColorPallete.mineShaft,
+                  onPressed: () {},
+                  text: const Text(
+                    "Download",
+                    style: TextStyle(
+                      color: ColorPallete.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  icon: const Icon(
+                    Icons.download,
+                    color: ColorPallete.white,
+                    size: 22.0,
+                  ),
+                ),
               ),
-            ),
-            icon: const Icon(
-              Icons.download,
-              color: ColorPallete.white,
-              size: 22.0,
-            ),
+            ],
           ),
           const SizedBox(height: 14.0),
           Text(
